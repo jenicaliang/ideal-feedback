@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IDEAL — Feedback</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans 3', 'Source Sans Pro', sans-serif;
+            font-size: 9.5pt;
+            line-height: 1.6;
+            background: #E6E4DF;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            background: transparent;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 24px;
+            line-height: 1.2;
+            font-weight: 600;
+        }
+
+        .intro {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 9.5pt;
+            line-height: 1.6;
+        }
+
+        .context-box {
+            margin-bottom: 40px;
+            padding: 20px;
+            border: 1px solid #999;
+            background: #E6E4DF;
+        }
+
+        .context-box h2 {
+            font-size: 9.5pt;
+            line-height: 1.6;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .context-box p {
+            margin-bottom: 8px;
+        }
+
+        .context-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .form-group {
+            margin-bottom: 35px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #333;
+            font-weight: 400;
+            font-size: 9.5pt;
+            line-height: 1.6;
+        }
+
+        .question-number {
+            font-weight: 600;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #999;
+            background: #E6E4DF;
+            font-size: 9.5pt;
+            line-height: 1.6;
+            font-family: 'Source Sans 3', 'Source Sans Pro', sans-serif;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #666;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .checkbox-group {
+            margin-top: 8px;
+        }
+
+        .checkbox-item {
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            margin-right: 8px;
+            width: auto;
+        }
+
+        .checkbox-item label {
+            margin-bottom: 0;
+            cursor: pointer;
+        }
+
+        .other-input {
+            margin-left: 24px;
+            margin-top: 6px;
+            width: calc(100% - 24px);
+        }
+
+        .radio-group {
+            margin-top: 8px;
+        }
+
+        .radio-item {
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+        }
+
+        .radio-item input[type="radio"] {
+            margin-right: 8px;
+            width: auto;
+        }
+
+        .radio-item label {
+            margin-bottom: 0;
+            cursor: pointer;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #333;
+            color: white;
+            border: none;
+            font-size: 9.5pt;
+            line-height: 1.6;
+            font-family: 'Source Sans 3', 'Source Sans Pro', sans-serif;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background: #555;
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .message {
+            margin-top: 20px;
+            padding: 12px;
+            font-size: 9.5pt;
+            line-height: 1.6;
+            display: none;
+        }
+
+        .message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+
+        .message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+
+        .required {
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>IDEAL —  Feedback</h1>
+
+        <div id="responseMessage" class="message"></div>
+        
+        <div class="intro">
+            <p style="margin-bottom: 8px;">Thank you for taking a moment to share your response.</p>
+            <p style="margin-bottom: 8px;">The material you just reviewed presents IDEAL, a speculative concept developed as part of a Communication Design Capstone project. This form is intended to capture your impressions, questions, and concerns about the idea of the service.</p>
+            <p style="font-style: italic;">All responses are anonymous.</p>
+        </div>
+
+        <div class="context-box">
+            <h2>Please note:</h2>
+            <p style="margin-bottom: 8px;">IDEAL is a hypothetical project, not a real product or company. The devices and services described are not currently available, and the system is not technically feasible in its proposed form today.</p>
+            <p style="margin-bottom: 8px;">However, the concept is informed by real developments—such as increasingly capable decision-making AI systems and the growing accuracy of personal data tracking technologies (e.g., wearables like Oura).</p>
+            <p>This project is less interested in whether IDEAL could exist, and more interested in how people respond to the idea of such a service.</p>
+        </div>
+        
+        <form id="feedbackForm">
+            <div class="form-group">
+                <label><span class="question-number">1. Willingness to Use</span><br>If a service like IDEAL did exist, would you choose to use it? Why or why not? <span class="required">*</span></label>
+                <textarea name="willingness" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label><span class="question-number">2. What Stood Out</span><br>What stood out to you most about IDEAL? (This could be a feature, a phrase, or a general feeling.) <span class="required">*</span></label>
+                <textarea name="stood_out" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label><span class="question-number">3. Overall Impression</span><br>What was your immediate reaction to the concept? (For example: appealing, unsettling, reassuring, confusing, neutral.) <span class="required">*</span></label>
+                <textarea name="overall_impression" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label><span class="question-number">4. Language & Tone</span><br>How would you describe the way IDEAL was presented? (For example: clear, corporate, trustworthy, concerning, persuasive, neutral.) <span class="required">*</span></label>
+                <textarea name="language_tone" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label style="margin-bottom: 12px;">Did the language make the service feel more appealing, more concerning, or neither? Why?</label>
+                <textarea name="language_impact"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label style="margin-bottom: 4px;"><span class="question-number">5. Framing</span><br>How did you primarily understand IDEAL? (Select all that apply) <span class="required">*</span></label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="frame_service" name="framing" value="A service">
+                        <label for="frame_service">A service</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="frame_subscription" name="framing" value="A system you subscribe to">
+                        <label for="frame_subscription">A system you subscribe to</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="frame_devices" name="framing" value="A set of devices">
+                        <label for="frame_devices">A set of devices</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="frame_product" name="framing" value="A product you buy">
+                        <label for="frame_product">A product you buy</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="frame_other" name="framing" value="Something else">
+                        <label for="frame_other">Something else:</label>
+                    </div>
+                    <input type="text" class="other-input" id="frame_other_text" name="framing_other" placeholder="Please specify">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Was this framing clear to you? If not, what felt ambiguous?</label>
+                <textarea name="framing_clarity"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label><span class="question-number">6. User Agency</span><br>Did IDEAL feel more like support for your decision-making, or more like a replacement for it? Why? <span class="required">*</span></label>
+                <textarea name="agency_alignment" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label style="margin-bottom: 4px;"><span class="question-number">7. Background</span><br>Which best describes your background or way of working?</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="bg_creative" name="background" value="Primarily creative or process-oriented">
+                        <label for="bg_creative">Primarily creative or process-oriented</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="bg_outcome" name="background" value="Primarily outcome- or results-oriented">
+                        <label for="bg_outcome">Primarily outcome- or results-oriented</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="bg_mix" name="background" value="A mix of both">
+                        <label for="bg_mix">A mix of both</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="bg_unsure" name="background" value="Unsure / prefer not to say">
+                        <label for="bg_unsure">Unsure / prefer not to say</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label style="margin-bottom: 4px;"><span class="question-number">8. Familiarity With Data Tracking</span><br>Have you used personal data-tracking tools (e.g., fitness trackers, productivity apps)?</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="tracking_yes" name="tracking_familiarity" value="Yes">
+                        <label for="tracking_yes">Yes</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="tracking_no" name="tracking_familiarity" value="No">
+                        <label for="tracking_no">No</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="tracking_unsure" name="tracking_familiarity" value="Unsure">
+                        <label for="tracking_unsure">Unsure</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Is there anything else you'd like to share—questions, concerns, skepticism, or lingering thoughts?</label>
+                <textarea name="additional_thoughts"></textarea>
+            </div>
+
+            <button type="submit" id="submitBtn">Submit</button>
+        </form>
+
+    </div>
+
+    <script>
+        const form = document.getElementById('feedbackForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const responseMessage = document.getElementById('responseMessage');
+        const frameOtherCheckbox = document.getElementById('frame_other');
+        const frameOtherInput = document.getElementById('frame_other_text');
+
+        // REPLACE THIS URL WITH YOUR GOOGLE APPS SCRIPT WEB APP URL
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwF0jEroj2cZDRzZLcVJx4s2ryMc0MjMwPG4AhqaSyyp1LSCw_6UhQyJs9sDjMTCtVi/exec';
+
+        // Enable/disable other input based on checkbox
+        frameOtherCheckbox.addEventListener('change', function() {
+            frameOtherInput.disabled = !this.checked;
+            if (!this.checked) {
+                frameOtherInput.value = '';
+            }
+        });
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Validate framing checkboxes
+            const framingChecked = document.querySelectorAll('input[name="framing"]:checked');
+            if (framingChecked.length === 0) {
+                responseMessage.className = 'message error';
+                responseMessage.textContent = 'Please select at least one option for question 5 (Framing & Mental Model).';
+                responseMessage.style.display = 'block';
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+            responseMessage.style.display = 'none';
+
+            const formData = new FormData(form);
+            
+            // Collect all checked framing values
+            const framingValues = Array.from(framingChecked).map(cb => cb.value);
+            formData.set('framing', framingValues.join(', '));
+
+            try {
+                const response = await fetch(scriptURL, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    responseMessage.className = 'message success';
+                    responseMessage.textContent = 'Thank you! Your response has been recorded. If you would like to know more about this project, please reach out at jenica@wustl.edu.';
+                    responseMessage.style.display = 'block';
+                    form.reset();
+                    window.scrollTo(0, 0);
+                } else {
+                    throw new Error('Submission failed');
+                }
+            } catch (error) {
+                responseMessage.className = 'message error';
+                responseMessage.textContent = 'Oops! Something went wrong. Please try again.';
+                responseMessage.style.display = 'block';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit';
+            }
+        });
+    </script>
+</body>
+</html>
